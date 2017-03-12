@@ -41,47 +41,66 @@
 			text-align: center;	
 		}
 		.mainbody{
-		
+			position: relative;
 			background: #808080;
-			border: 1px solid #000;
+			overflow: hidden;
+			width: 100%;
 
 		}
 		.lc{
-			/*position: absolute;
-			top: 20px;
-			left: 20px;*/
-			width: auto;
-			margin: 20px 400px 20px 20px;
+			position: relative;
+    		float: left;
+    		margin-right: 430px;
+    		padding: 20px;
 				
 		}
-		.rc{
-			
-			width: 360px;
-			float: right;
-			margin-right: 20px;
-			margin-top: 20px;
+	
+		.act-box{
+			position: absolute;
+	    	right: 20px;
+	   	 	top: 20px;
+	   	 	padding: 20px;
+	    	width: 320px;
+	   	 	background-color: white;
+	    	border: 1px solid #ccc;
+	   		box-shadow: 2px 2px 2px #888;
 		}
-	/*	.para {
-			background: #fff;
-			border: 1px solid #000;
-			padding: 20px;
-			box-shadow: 2px 2px #606060;
+		.act-box  h2{
+			border-left: 2px solid grey;
+			padding-left: 10px;
+		}
+		.submit{
+			width: 100%;
+			height: 30px;
+			background:dodgerblue;
+			text-align: center;
+			color: white;
+			border-radius: 5px;
 		}
 		
-
-		.para p{
-			text-indent: 2em;
+		.para{
+			position: relative;
+   	 		float: left;
+    		width: 100%;
+    		padding: 20px;   
+    		background-color: white;
+    		box-shadow: 1px 1px 1px #000;
+    		border: 1px solid #ccc;
+   			margin-bottom: 20px;
 		}
-		.para ol{
-			margin-left: 20px;
+		.para>img{
+			width: 100px;
 		}
+		
 		#pics li{
+			float: left;
 			list-style: none;
 			width: 98px;
 			height: 118px;
 			border: 1px solid #000;
-			margin-top: 10px;
+			margin: 10px 20px 0 0 ;
 		}
+	
 		#pics li img{
 			display: block;
 			width: 80px;
@@ -94,6 +113,13 @@
 			margin:5px auto; 
 			
 		}
+		
+		.para p{
+			text-indent: 2em;
+		}
+		.para ol{
+			margin-left: 20px;
+		}
 
 		table{
 			width: 100%
@@ -102,37 +128,9 @@
 			background-color: #000;
 			color: #fff;
 		}
-		
-		
 		.right{
+			font-size: 10px;
 			text-align: right;
 		}
-		.button{
-			display: block;
-			width: 40px;
-			height: 20px;
-			color: #fff;
-		}
-		.interact{
-			position: absolute;
-			width: 360px;
-			top: 20px;
-			right: 20px;
-		}
-		.interact  h2{
-			border-left: 2px solid grey;
-			padding-left: 10px;
-		}
-		#submit{
-			background:#00f;
-			position: absolute;
-			left: 536px;
-			top:370px;
-		}
-		#reset{
-			background:#f00;
-			position: absolute;
-			left: 586px;
-			top:370px;
-		}
-*/
+		
+	
