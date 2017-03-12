@@ -1,9 +1,13 @@
 
+		
+		*{
+			margin:0;
+			padding: 0;
+		}
 		body{
 			padding: 0;
 			margin: 0;
 			font-family: "微软雅黑";
-			
 		}
 		#header{
 			position: relative;
@@ -45,6 +49,7 @@
 			background: #808080;
 			overflow: hidden;
 			width: 100%;
+			/*border: 1px solid #000;*/
 
 		}
 		.lc{
