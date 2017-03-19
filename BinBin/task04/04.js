@@ -1,10 +1,14 @@
-function rightIn(){
+		
+
+		function rightIn(){
 			var data=document.getElementById("text-input").value;
 			var num_list=document.getElementById("num_list");
 			var num=document.createElement("li");
 			num.innerHTML=data;
 			num_list.appendChild(num);
-			console.log(num_list.childNodes.length);
+			num.onclick=function(){
+				num_list.removeChild(this);
+			}
 		}
 		function leftIn(){
 			var data=document.getElementById("text-input").value;
@@ -13,7 +17,9 @@ function rightIn(){
 			num.innerHTML=data;
 			var first_child=document.getElementById("num_list").firstChild;
 			num_list.insertBefore(num,first_child);
-			console.log(num_list.childNodes.length);
+			num.onclick=function(){
+				num_list.removeChild(this);
+			}
 		}
 		function leftOut(){
 			var num_list=document.getElementById("num_list");
@@ -48,14 +54,5 @@ function rightIn(){
 			document.getElementById("right-out").onclick=function(){
 				rightOut();
 			};
-			document.getElementById("num_list").onclick=function(e){
-				e = e || window.event;
-     		 var t = e.target || e.srcElement;
-     		 var tagName=t.tagName;
-				if(tagName=="li"){
-					num_list.removeChild(t);
-				}
-			}
-
 		}
 		init();
