@@ -1,0 +1,16 @@
+	
+		ul{
+			list-style: none;
+		}
+		li{
+			background: red;
+			width: 20px;
+			/*height: 35px;
+			line-height: 35px;*/
+			text-align: center;
+			color: white;
+			font-size: 20px;
+			float: left;
+			margin-right: 3px;
+
+		}
