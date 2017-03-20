@@ -1,17 +1,22 @@
-		
+	
 
 		function rightIn(){
+		
 			var data=document.getElementById("text-input").value;
+		
 			var num_list=document.getElementById("num_list");
 			var num=document.createElement("li");
 			num.innerHTML=data;
 			num_list.appendChild(num);
 			num.onclick=function(){
 				num_list.removeChild(this);
-			}
+				}
+			
 		}
 		function leftIn(){
+			
 			var data=document.getElementById("text-input").value;
+		
 			var num_list=document.getElementById("num_list");
 			var num=document.createElement("li");
 			num.innerHTML=data;
@@ -19,6 +24,7 @@
 			num_list.insertBefore(num,first_child);
 			num.onclick=function(){
 				num_list.removeChild(this);
+				
 			}
 		}
 		function leftOut(){
