@@ -1,10 +1,171 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>JS Task07</title>
+	<title>Flexbox</title>
 	<meta charset="utf-8">
+	<style type="text/css">
+		body{
+			margin:0;
+			padding: 0;
+		}
+		div{
+			border: 1px solid #000;
+			padding: 10px;
+			margin: 10px;
+			text-align: center;
+		}
+		.level1{
+		 	display: flex;
+			justify-content: space-between;
+		}
+		.level2{
+		 	display: flex;
+		 	flex: 1;
+		 	justify-content: space-between;
+		}
+		.level3{
+		 	display: flex;
+		 	flex:1;
+		 	
+		}
+		.level4{
+			flex: 1;
+		}
+		.btn-box{
+			width: 300px;
+			
+		}
+
+	</style>
 </head>
 <body>
+<div class="level1">1
+<div class="level2 level21">21
+	<div class="level3 level31">31
+		<div class="level4 level41">41</div>
+		<div class="level4 level42">42</div>
+	</div>
+	<div class="level3 level32">32
+		<div class="level4 level43">43</div>
+		<div class="level4 level44">44</div>
+	</div>
+</div>
+<div class="level2 level22">22
+	<div class="level3 level33">33
+		<div class="level4 level45">45</div>
+		<div class="level4 level46">46</div>
+	</div>
+	<div class="level3 level34" >34
+		<div class="level4 level47">47</div>
+		<div class="level4 level48">48</div>
+	</div>
+</div>
+</div>
+<div class="btn-box">
+三种遍历方式：
+<button id="DLR">前序</button>
+<button id="LDR">中序</button>
+<button id="LRD">后序</button>
+</div>
+<script type="text/javascript">
+	var btn1=document.getElementById("DLR");
+	var btn2=document.getElementById("LDR");
+	var btn3=document.getElementById("LRD");
+	var rootNode=document.getElementsByClassName("level1")[0];
+	var arr=[];
+	var last;
+	var flag=false;
+	btn1.onclick=function(){
+		 if(!flag){
+		 	flag=true;
+		 	init();
+			DLR(rootNode);
+			// changeBackground()
+			changeColor()
+		}
+	}
+	btn2.onclick=function(){
+		if(!flag){
+		 	flag=true;
+		 	init();
+			LDR(rootNode);
+			for (var i = 0; i < arr.length; i++) {
+				console.log(arr[i].innerHTML)
+			}
+			// changeBackground();
+			changeColor()
+		}
+	}
+	btn3.onclick=function(){
+		if(!flag){
+		 	flag=true;
+		 	init();
+			LRD(rootNode);
+			// changeBackground();	
+			changeColor()
+		}
+	}
+	function DLR(node){
+		if(node){
+			arr.push(node);
+			DLR(node.firstElementChild);
+			DLR(node.lastElementChild);
 
+		}
+	}
+	function LDR(node){
+		if (node) {
+			LDR(node.firstElementChild);
+			arr.push(node);
+			LDR(node.lastElementChild);
+		}
+	}
+	function LRD(node){
+		if (node) {
+			LRD(node.firstElementChild);
+			LRD(node.lastElementChild);
+			arr.push(node);
+		}
+	}
+	function changeBackground(){
+		for (var i = 0; i < arr.length; i++) {
+			setTimeout(function(i){
+				return function(){
+					if(i==arr.length-1){
+						flag=false;
+					}
+					if(last){
+						last.style.backgroundColor="#fff";
+					}
+					arr[i].style.backgroundColor="#f00";
+					last=arr[i];
+				}
+			}(i),i*1000)
+		}
+	}
+	  function changeColor() {
+        for (var i=0;i<arr.length;i++){
+            setTimeout(function (i){
+                return function () {
+                    if (i == arr.length-1){
+                        flag = false;
+                    }
+                    if (last){
+                        last.style.backgroundColor = '#fff';
+                    }
+                    arr[i].style.backgroundColor = '#C7DD8B';
+                    last = arr[i];
+                }
+            }(i),i*1000);
+        }
+    }
+  
+	function init(){
+		arr=[];
+		if(last){
+			last.style.backgrondColor="#fff";
+		}
+	}
+</script>
 </body>
 </html>
