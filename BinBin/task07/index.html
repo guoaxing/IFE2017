@@ -38,22 +38,22 @@
 <div id="root">
 <div>
 	<div>
-		<div  class="level4"></div>
-		<div  class="level4"></div>
+		<div ></div>
+		<div ></div>
 	</div>
 	<div>
-		<div  class="level4"></div>
-		<div  class="level4"></div>
+		<div ></div>
+		<div ></div>
 	</div>
 </div>
 <div>
 	<div>
-		<div  class="level4"></div>
-		<div  class="level4"></div>
+		<div ></div>
+		<div ></div>
 	</div>
 	<div>
-		<div  class="level4"></div>
-		<div  class="level4"></div>
+		<div ></div>
+		<div></div>
 	</div>
 </div>
 </div>
@@ -69,8 +69,6 @@
 	var btn3=document.getElementById("post");
 	var rootNode=document.getElementById("root");
 	var tree=[];
-	var last;
-	var flag=false;
 	btn1.onclick=function(){
 		  	tree=[];
 			pre(rootNode);
@@ -117,8 +115,10 @@
  				return function(){
  					for (var j = 0; j < document.querySelectorAll("div").length; j++) {
  						document.querySelectorAll("div")[j].className="";
+
  					}
- 					arr[i].className="cur"
+ 					 arr[i].className="cur";
+ 					
  				}
  			
  			}(i),i*500)
