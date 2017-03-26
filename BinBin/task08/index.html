@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flexbox</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*
+		{
+			margin: 0;
+			padding: 0;
+		}
+     	div{
+             margin: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            flex-grow: 2;
+            border: 2px #000000 solid;
+            background: #ffffff;
+        }
+      body>div>div>div>div>div{
+            height: 50px;
+        }
+     
+        .cur{
+            background: red;
+        }
+	
+		.btn-box{
+			width: 300px;
+			border: 2px solid #000;
+			margin: 0 auto;
+		}
+
+	</style>
+</head>
+<body>
+<div id="root">super
+<div>Car
+	<div>Apple
+		<div >Pear</div>
+		<div >Pig</div>
+		<div >Cola</div>
+		<div >Soccer</div>
+	</div>
+	<div >
+		Phone
+	</div>
+	<div>
+		<div >Book</div>
+		<div >School</div>
+	</div>
+</div>
+<div>Note
+	<div>Human
+		<div >Code</div>
+		<div>Operate</div>
+		<div>Man</div>
+	</div>
+	<div>Program
+		<div >Bement
+		<div>cat</div>
+		</div>
+		<div>Glass</div>
+	</div>
+</div>
+<div>Fish</div>
+</div>
+<footer class="btn-box">
+三种遍历方式：
+<button id="pre">前序</button>
+<button id="mid">中序</button>
+<button id="post">后序</button>
+</footer>
+<script type="text/javascript">
+	var btn1=document.getElementById("pre");
+	var btn2=document.getElementById("mid");
+	var btn3=document.getElementById("post");
+	var rootNode=document.getElementById("root");
+	var tree=[];
+	btn1.onclick=function(){
+		  	tree=[];
+			pre(rootNode);
+			changeColor(tree);
+
+	}
+	btn2.onclick=function(){
+			tree=[];
+			mid(rootNode);
+			changeColor(tree);
+	}
+	btn3.onclick=function(){
+		tree=[];
+			post(rootNode);
+			changeColor(tree);
+	}
+	function pre(node){
+		if(node){
+			tree.push(node);
+			pre(node.firstElementChild);
+			pre(node.lastElementChild);
+
+		}
+	}
+	function mid(node){
+		if (node) {
+			mid(node.firstElementChild);
+			tree.push(node);
+			mid(node.lastElementChild);
+		}
+	}
+	function post(node){
+		if (node) {
+			post(node.firstElementChild);
+			post(node.lastElementChild);
+			tree.push(node);
+		}
+	}
+	
+ 	function changeColor(arr){
+
+ 		for (var i = 0; i < arr.length; i++) {
+ 			setTimeout(function(i){
+ 				return function(){
+ 					for (var j = 0; j < document.querySelectorAll("div").length; j++) {
+ 						document.querySelectorAll("div")[j].className="";
+ 					}
+ 					arr[i].className="cur"
+ 				}
+ 			
+ 			}(i),i*500)
+ 	
+  		}
+ 	 }
+</script>
+</body>
+</html>
