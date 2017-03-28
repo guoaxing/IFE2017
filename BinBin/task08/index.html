@@ -10,7 +10,7 @@
 			padding: 0;
 		}
      	div{
-             margin: 15px;
+            margin: 15px;
             display: flex;
             justify-content: space-around;
             align-items: stretch;
@@ -18,16 +18,9 @@
             border: 2px #000000 solid;
             background: #ffffff;
         }
-      body>div>div>div>div>div{
-            height: 50px;
-        }
-     
-        .cur{
-            background: red;
-        }
-	
+
 		.btn-box{
-			width: 300px;
+			width: 500px;
 			border: 2px solid #000;
 			margin: 0 auto;
 		}
@@ -35,15 +28,15 @@
 	</style>
 </head>
 <body>
-<div id="root">super
-<div>Car
-	<div>Apple
+<div id="root" data="super">super
+<div data="Car">Car
+	<div data="Apple">Apple
 		<div >Pear</div>
 		<div >Pig</div>
 		<div >Cola</div>
 		<div >Soccer</div>
 	</div>
-	<div >
+	<div data="Phone">
 		Phone
 	</div>
 	<div>
@@ -51,87 +44,31 @@
 		<div >School</div>
 	</div>
 </div>
-<div>Note
-	<div>Human
+<div data="Note">Note
+	<div data="Human">Human
 		<div >Code</div>
 		<div>Operate</div>
 		<div>Man</div>
 	</div>
-	<div>Program
+	<div data="Program">Program
 		<div >Bement
 		<div>cat</div>
 		</div>
 		<div>Glass</div>
 	</div>
 </div>
-<div>Fish</div>
+<div data="Fish">Fish</div>
 </div>
 <footer class="btn-box">
-三种遍历方式：
-<button id="pre">前序</button>
-<button id="mid">中序</button>
-<button id="post">后序</button>
+
+  <button type="button" data-method="preOrder">前序遍历</button>
+  <button type="button" data-method="postOrder">后序遍历</button>
+
+  <input type="text"  id="word"name="" placeholder="要查询的内容">
+  <button id="search">查询</button>
 </footer>
-<script type="text/javascript">
-	var btn1=document.getElementById("pre");
-	var btn2=document.getElementById("mid");
-	var btn3=document.getElementById("post");
-	var rootNode=document.getElementById("root");
-	var tree=[];
-	btn1.onclick=function(){
-		  	tree=[];
-			pre(rootNode);
-			changeColor(tree);
-
-	}
-	btn2.onclick=function(){
-			tree=[];
-			mid(rootNode);
-			changeColor(tree);
-	}
-	btn3.onclick=function(){
-		tree=[];
-			post(rootNode);
-			changeColor(tree);
-	}
-	function pre(node){
-		if(node){
-			tree.push(node);
-			pre(node.firstElementChild);
-			pre(node.lastElementChild);
-
-		}
-	}
-	function mid(node){
-		if (node) {
-			mid(node.firstElementChild);
-			tree.push(node);
-			mid(node.lastElementChild);
-		}
-	}
-	function post(node){
-		if (node) {
-			post(node.firstElementChild);
-			post(node.lastElementChild);
-			tree.push(node);
-		}
-	}
+<script type="text/javascript" src="task08.js">
 	
- 	function changeColor(arr){
-
- 		for (var i = 0; i < arr.length; i++) {
- 			setTimeout(function(i){
- 				return function(){
- 					for (var j = 0; j < document.querySelectorAll("div").length; j++) {
- 						document.querySelectorAll("div")[j].className="";
- 					}
- 					arr[i].className="cur"
- 				}
- 			
- 			}(i),i*500)
- 	
-  		}
- 	 }
 </script>
 </body>
 </html>
