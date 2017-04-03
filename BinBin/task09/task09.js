@@ -12,12 +12,43 @@ function Tree(root){
 			return true;
 		}
 	};
-	Tree.prototype.init=function(){
+	Tree.prototype.white=function(){
+		this.selected=false;
 		this.root.style.backgroundColor="#fff";
 		var divs=document.getElementsByTagName("div");
 		Array.prototype.forEach.call(divs,function(item,index){
 			item.style.backgroundColor="#fff";
 		});
+	}
+	Tree.prototype.init=function(){
+		var that=this;
+		addEvent(this.root,"click",function(event){
+			var target=event.target;
+			that.white();
+			target.style.backgroundColor="#00f";
+			that.selected=target;
+
+		})
+	}
+	Tree.prototype.remove=function(){
+		if(this.selected){
+			var child=this.selected;
+			child.parentNode.removeChild(child);
+			this.selected=false;
+		}else{
+			alert("你还没选呢")
+		}
+	}
+	Tree.prototype.append=function(note){
+		if(this.selected){
+			var div=document.createElement("div");
+			var word=document.createTextNode(note);
+			 div.appendChild(word);
+			this.selected.appendChild(div);
+
+		}else{
+			alert("你还没选呢")
+		}
 	}
 
 	Tree.prototype.preOrder=function(node){
@@ -44,7 +75,7 @@ function Tree(root){
 		this.showResult();
 	}
 	Tree.prototype.showResult=function(){
-		this.init();
+		this.white();
 		this.isAnimating=true;
 		var arr=this.animQueue,
 		    time=500;
@@ -71,7 +102,7 @@ function Tree(root){
 		    },time);
 	}
 	Tree.prototype.animate=function(){
-		this.init();
+		this.white();
 		this.isAnimating=true;
 		var arr=this.animQueue,
 		    time=500;
@@ -95,23 +126,26 @@ function Tree(root){
 			elem.attachEvent("on"+event,func);
 		}
 	}
-	function changeColor(){
-		var divs=document.getElementsByTagName("div");
-		Array.prototype.forEach.call(divs,function(item,index){
-			addEvent(item,"click",function(){
-				Array.prototype.forEach.call(divs,function(item,index){
-					item.style.backgroundColor="#fff";
-		});
-				item.style.backgroundColor="#00f";
-				if(item.parentNode){
-					item.parentNode.style.backgroundColor="#fff"
-				}
-			})
-		});	
-	}
+	//点击改变颜色
+	// function changeColor(){
+	// 	var divs=document.getElementsByTagName("div");
+	// 	Array.prototype.forEach.call(divs,function(item,index){
+	// 		addEvent(item,"click",function(){
+	// 			Array.prototype.forEach.call(divs,function(item,index){
+	// 				item.style.backgroundColor="#fff";
+	// 	});
+	// 			item.style.backgroundColor="#00f";
+	// 			if(item.parentNode){
+	// 				item.parentNode.style.backgroundColor="#fff"
+	// 			}
+	// 		})
+	// 	});	
+	// }
+
 	window.onload=function(){
 		var root=document.getElementById("root");
 		var tree=new Tree(root);
+		tree.init();
 		var btns=document.getElementsByTagName("button");
 		Array.prototype.forEach.call(btns,function(item,index){
 			addEvent(item,"click",function(){
@@ -129,7 +163,16 @@ function Tree(root){
 				tree.search(word);
 			}
 		});
-		changeColor();
+		var addBtn=document.getElementById("add");
+		addEvent(addBtn,"click",function(){
+			var note=document.getElementById("addelem").value;
+			 tree.append(note);
+			//alert(note);
+		});
+		var deleteBtn=document.getElementById("deleteBtn");
+		addEvent(deleteBtn,"click",function(){
+			tree.remove();
 		
+		});
 		}
 	
