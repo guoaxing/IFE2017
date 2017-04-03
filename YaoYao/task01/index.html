@@ -8,13 +8,22 @@
 			margin-left: 40px;
 		}
 		button{
+			border:0;
 			background-color: #2f79ba;
 			border-radius: 5px;
 			font-size: 12px;
 			color: white;
 			font-family: "微软雅黑";
 		}
-		
+		input{
+			
+			border:1px #a9a9a9 solid;
+		}
+		p{
+			font-size: 12px;
+			color: #c8c8c8;
+			font-family: "微软雅黑"
+		}
 	</style>
 </head>
 <body>
@@ -22,21 +31,22 @@
 	<label >名称</label>
 	<input type="text" name="" id="data">
 	<button id="check">验证</button>
-	<p id="p1"></p>
+	<p id="result">必填，长度为4-16个字符</p>
 	<script type="text/javascript">
-		
-		
 		var check=document.getElementById("check");
-		var p1=document.getElementById("p1");
-		var str1="必填，长度为4-16个字符";
+		var result=document.getElementById("result");
 		var str2="姓名不能为空"
 		var str3='名称格式正确';
 		check.addEventListener("click",function(){
 			var data=document.getElementById("data");
 			var value=data.value;
+			//去掉空格
+			value=value.replace(/\s/g,"");
 			var strlen=0;
 			for(var i=0;i<value.length;i++){
-			 		if(value.charCodeAt(i)>255){
+			 	
+			 		var a=value.charAt(i);
+			 		if(a.match(/[^\x00-\xff]/ig)!=null){
 			 			strlen+=2;
 			 		}else{
 			 			strlen++;
@@ -44,24 +54,22 @@
 			 	}
 			 if(value==""){
 			 	data.style.borderColor="#f00";
-				p1.innerHTML=str2;
-				p1.style.color="#f00";
-				p1.style.fontSize="12px";
-				p1.style.fontFamliy="微软雅黑"
+				result.innerHTML=str2;
+				result.style.color="#f00";
+				result.style.fontSize="12px";
+				result.style.fontFamliy="微软雅黑"
 
-			 }else if(strlen<4||strlen>16) {
-				p1.innerHTML=str1;
-				data.style.borderColor="#a9a9a9";
-				p1.style.color="#c8c8c8";
-				p1.style.fontSize="12px";
-				p1.style.fontFamliy="微软雅黑"
-			 
-			}else {
+			 }else if(strlen>=4&&strlen<=16) {
 				data.style.borderColor="#61ba46";
-				p1.innerHTML=str3;
-				p1.style.color="#61ba46";
-				p1.style.fontSize="12px";
-				p1.style.fontFamliy="微软雅黑"
+				result.innerHTML=str3;
+				result.style.color="#61ba46";
+				result.style.fontSize="12px";
+				result.style.fontFamliy="微软雅黑"
+				
+			}else {
+				result.innerHTML="长度应为4-16个字符！"
+				result.style.color="#c8c8c8";
+				data.style.borderColor="#a9a9a9";
 			}
 		},false)
 	</script>
