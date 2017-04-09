@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task03</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<div>
+	<input type="radio" name="identity" value="onschool" onclick="change()">在校生
+	<input type="radio" name="identity" value="offschool" onclick="change()">非在校生
+	</div>
+	<div>
+		<div id="school">
+		   <span>学校</span>
+		   <select id="cities" onChange = "getCity(this.options[this.selectedIndex].value)">
+			<option value="请选择">请选择</option>
+				<option value="北京">北京</option>
+				<option value="上海">上海</option>
+				<option value="济南">济南</option>
+			</select>
+			<select id="schools">
+			<option >请选择</option>
+			</select>
+		</div>		
+			<div id="company" style="display: none">
+				就业单位
+				<input type="text" name="">
+			</div>
+	</div>			
+			
+			
+<script type="text/javascript">
+	function change(){
+	 var school=document.getElementById("school");
+	 var company=document.getElementById("company");		
+	 var identity=document.getElementsByName('identity');
+	 for(var i=0;i<identity.length;i++){
+	 	 if(identity[0].checked){
+	 		school.style.display="block";
+	 		company.style.display="none";
+	 	}else{
+	 		school.style.display="none";
+	 		company.style.display="block";
+	 	}
+	 }
+	 }
+	 var cities=document.getElementById("cities");
+	 var schools=document.getElementById("schools")
+	
+	var cityArr=new Array();
+	cityArr[0]=new Array("北京","北京大学,清华大学,人民大学");
+	cityArr[1]=new Array("上海","复旦大学,交通大学,财经大学");
+	cityArr[2]=new Array("济南","山东大学,建筑大学,师范大学");
+	cityArr[3]=new Array("请选择","请选择");
+	function getCity(currCity){
+		var currCity=currCity;
+		schools.length=0;
+		for(var i=0;i<cityArr.length;i++){
+			if(cityArr[i][0]==currCity){
+				var tmpcity=cityArr[i][1].split(",");
+				for(var j=0;j<tmpcity.length;j++){
+					schools.options[j] = new Option(tmpcity[j],tmpcity[j]);
+				}
+			}
+		}
+	}
+</script>
+</body>
+</html>
