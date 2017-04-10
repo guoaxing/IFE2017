@@ -4,39 +4,69 @@
 	<title>Task01</title>
 	<meta charset="utf-8">
 	<style type="text/css">
-		p{
-			margin-left: 40px;
+		*{
+			font-family: "微软雅黑"
 		}
+		
 		button{
 			border:0;
 			background-color: #2f79ba;
 			border-radius: 5px;
 			font-size: 12px;
 			color: white;
-			font-family: "微软雅黑";
-		}
-		input{
 			
+		}
+		input.default{
 			border:1px #a9a9a9 solid;
 		}
 		p{
-			font-size: 12px;
+			margin-top: -5px;
+		}
+		p.default{
+			font-size: 10px;
 			color: #c8c8c8;
-			font-family: "微软雅黑"
+			
+		}
+		.success{
+			font-size: 10px;
+			color: #61ba46;	
+		}
+		.error{
+			font-size: 10px;
+			color: #f00;
+		}
 		}
 	</style>
 </head>
 <body>
 <div>
-	<label >名称</label>
-	<input type="text" name="" id="data">
-	<button id="check">验证</button>
-	<p id="result">必填，长度为4-16个字符</p>
+	<form>
+	<table>
+	<tbody>
+	<tr>
+	<td><label >名称</label>
+	</td>
+	<td><input type="text" name="" id="data" class="default">
+		<button id="check">验证</button>
+	</td>
+	</tr>
+	<tr>
+	<td></td>
+	<td><p id="result" class="default">必填，长度为4-16个字符</p>
+	</td>
+	</tr>
+	
+	
+	</tbody>
+	</table>
+	</form>
 	<script type="text/javascript">
 		var check=document.getElementById("check");
 		var result=document.getElementById("result");
-		var str2="姓名不能为空"
+		var str1="长度应为4-16个字符！";
+		var str2="姓名不能为空";
 		var str3='名称格式正确';
+
 		check.addEventListener("click",function(){
 			var data=document.getElementById("data");
 			var value=data.value;
@@ -44,7 +74,6 @@
 			value=value.replace(/\s/g,"");
 			var strlen=0;
 			for(var i=0;i<value.length;i++){
-			 	
 			 		var a=value.charAt(i);
 			 		if(a.match(/[^\x00-\xff]/ig)!=null){
 			 			strlen+=2;
@@ -55,21 +84,16 @@
 			 if(value==""){
 			 	data.style.borderColor="#f00";
 				result.innerHTML=str2;
-				result.style.color="#f00";
-				result.style.fontSize="12px";
-				result.style.fontFamliy="微软雅黑"
+				result.className="error"
 
 			 }else if(strlen>=4&&strlen<=16) {
-				data.style.borderColor="#61ba46";
+			 	data.style.borderColor="#61ba46";
 				result.innerHTML=str3;
-				result.style.color="#61ba46";
-				result.style.fontSize="12px";
-				result.style.fontFamliy="微软雅黑"
-				
+				result.className="success";
 			}else {
-				result.innerHTML="长度应为4-16个字符！"
-				result.style.color="#c8c8c8";
-				data.style.borderColor="#a9a9a9";
+				result.innerHTML=str1;
+				result.className="error"
+				data.style.borderColor="#f00";
 			}
 		},false)
 	</script>
