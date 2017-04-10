@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task04</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	
+		canvas{
+			/*border:1px solid #000; */
+		}
+	</style>
+</head>
+<body>
+
+<canvas id="chess" width="500" height="450"></canvas>
+<div>
+<input type="text" name="" placeholder="请输入命令" id="command">
+<input type="button" name="" value="执行" id="go" >
+
+</div>
+
+	
+<script type="text/javascript">
+		var chess=document.getElementById("chess");
+		var context=chess.getContext("2d");
+		for (var i = 0; i < 11; i++) {  
+	    context.beginPath();  
+	    context.moveTo(40 * i+20, 20);  
+	    context.lineTo(40 * i+20, 420);  
+	    context.closePath();  
+	    context.stroke();  
+	    context.beginPath();  
+	    context.moveTo(20, 40 * i+20);  
+	    context.lineTo(420, 40 * i+20);  
+	    context.closePath();  
+	    context.stroke();
+	    context.fillStyle="#f00";
+	    context.fillRect(21,21,38,38)  
+	  }  
+	  var go=document.getElementById("go");
+	  go.onclick=function () {
+	  var len=document.getElementById("command").value;
+	 	 context.fillStyle="#fff";
+	    context.fillRect(21,21,38,38)  
+	  }
+
+	</script>
+</body>
+</html>
