@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FloatLayer</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			height: 1600px;
+			text-align: center;
+		}
+		#button{
+			display: block;
+			width: 100px;
+			height: 60px;
+			margin: 0 auto;
+		}
+		#popup{
+			width: 300px;
+			height: 200px;
+			border:1px solid #000;
+			background-color: "#fff"
+		}
+			
+			
+	</style>
+</head>
+<body>
+
+<button id="button">弹出浮出层</button>
+<div id="popup">
+<h4>这是一个浮出层</h4>
+<button id="sure">确定</button>
+</div>
+<div id="mask"></div>
+<script type="text/javascript">
+	function Popup(element,mask){
+		this.element=element;
+		if(arguments[1]==null){
+			this.maskElement=null
+		}else{
+			this.maskElement=mask;
+		}
+		this.init();
+	}
+
+	Popup.prototype={
+		constructor:Popup,
+
+		show:function(){
+			this.maskElement.style.display="block";
+			this.element.style.display="block";
+			this.element.style.left="50%";
+			this.element.style.top="50%";
+		},
+
+		hide:function(){
+			this.maskElement.style.display="none"
+		},
+
+		init:function(){
+			if(this.maskElement==null){
+				this.maskElement=document.createElement("div");
+			}
+			var popuper=this.maskElement;
+			popuper.style.width=window.screen.width+"px";
+			popuper.style.height=window.screen.height+"px";
+			popuper.style.top="50%";
+			popuper.style.left="50%";
+			popuper.style.transform="translate(-50%,-50%)";
+			popuper.style.backgroundColor=" rgba(108,108,108,0.7)";
+			popuper.style.display="none";
+			popuper.style.position="fixed"
+
+			this.element.style.position="absolute";
+			this.element.style.left="50%";
+			this.element.style.top="50%";
+			this.element.style.transform="translate(-50%,-50%)";
+			this.element.style.display="none"
+
+			this.element.parentNode.removeChild(this.element);
+			popuper.appendChild(this.element);
+			document.body.appendChild(popuper);
+
+			var self=this;
+			popuper.addEventListener("click",function(){
+				self.hide();
+			},false);
+
+			this.element.addEventListener("click",function(event){
+				event.stopPropagation();
+			},false)
+		}
+	}
+	var popup=document.getElementById("popup");
+	var mask=document.getElementById("mask");
+	var btn=document.getElementById("button");
+	var sure=document.getElementById("sure")
+	var layer=new Popup(popup,mask);
+
+	btn.addEventListener("click",function(){
+		layer.show();
+	},false);
+	sure.addEventListener("click",function(){
+		layer.hide();
+	},false)
+</script>
+</body>
+</html>
